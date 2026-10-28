@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to the Bee Dimension</title>
+	<link rel="icon" href="assets/3.ico" type="image/x-icon">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            color: transparent;
+            font-size: 2em;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flashing-text {
+            animation: flash 0.1s infinite;
+        }
+
+        @keyframes flash {
+            0%, 100% {
+                color: yellow;
+            }
+            50% {
+                color: white;
+            }
+        }
+
+        .bee-container {
+            display: none;
+            position: absolute;
+            width: 120px;
+            animation: flyAround 8s linear infinite;
+			user-select: none;
+			padding: 13px;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+        }
+
+        .bzzz-text {
+            color: yellow;
+            font-size: 0.8em;
+            position: absolute;
+            top: 0;
+            left: 105px;
+            transform: rotate(-10deg);
+        }
+
+        .info-line {
+            position: absolute;
+            font-size: 0.8em;
+            color: #32ff00;
+            white-space: nowrap;
+            display: none;
+        }
+
+        .info-line:nth-child(1) { animation: moveInfo1 8s linear infinite; }
+        .info-line:nth-child(2) { animation: moveInfo2 9s linear infinite; }
+        .info-line:nth-child(3) { animation: moveInfo3 7s linear infinite; }
+        .info-line:nth-child(4) { animation: moveInfo4 10s linear infinite; }
+
+        @keyframes flyAround {
+            0% { top: 80%; left: 5%; transform: rotate(0deg); }
+            25% { top: 20%; left: 10%; transform: rotate(20deg); }
+            50% { top: 40%; left: 70%; transform: rotate(-30deg); }
+            75% { top: 60%; left: 40%; transform: rotate(15deg); }
+            100% { top: 80%; left: 5%; transform: rotate(0deg); }
+        }
+
+        @keyframes moveInfo1 {
+            0% { top: 10%; left: 15%; }
+            25% { top: 20%; left: 60%; }
+            50% { top: 40%; left: 20%; }
+            75% { top: 70%; left: 50%; }
+            100% { top: 10%; left: 15%; }
+        }
+
+        @keyframes moveInfo2 {
+            0% { top: 30%; left: 30%; }
+            25% { top: 40%; left: 80%; }
+            50% { top: 60%; left: 40%; }
+            75% { top: 50%; left: 10%; }
+            100% { top: 30%; left: 30%; }
+        }
+
+        @keyframes moveInfo3 {
+            0% { top: 50%; left: 20%; }
+            25% { top: 70%; left: 60%; }
+            50% { top: 40%; left: 30%; }
+            75% { top: 20%; left: 50%; }
+            100% { top: 50%; left: 20%; }
+        }
+
+        @keyframes moveInfo4 {
+            0% { top: 60%; left: 10%; }
+            25% { top: 20%; left: 30%; }
+            50% { top: 70%; left: 50%; }
+            75% { top: 40%; left: 70%; }
+            100% { top: 60%; left: 10%; }
+        }
+
+        .button {
+            display: none;
+            font-size: 0.8em;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            position: absolute;
+			user-select: none;
+			padding: 13px;
+        }
+
+        .escape-button {
+            animation: moveEscapeButton 3s linear infinite;
+			user-select: none;
+			padding: 13px;
+        }
+
+        .about-button {
+            animation: moveAboutButton 6s linear infinite;
+        }
+
+        .button:hover {
+            color: #ffcc00;
+        }
+
+        @keyframes moveEscapeButton {
+            0% { top: 10%; left: 20%; }
+            25% { top: 30%; left: 80%; }
+            50% { top: 70%; left: 60%; }
+            75% { top: 50%; left: 10%; }
+            100% { top: 10%; left: 20%; }
+        }
+
+        @keyframes moveAboutButton {
+            0% { top: 60%; left: 10%; }
+            25% { top: 40%; left: 30%; }
+            50% { top: 20%; left: 70%; }
+            75% { top: 80%; left: 50%; }
+            100% { top: 60%; left: 10%; }
+        }
+    </style>
+</head>
+<body>
+    <div id="message" class="flashing-text">Welcome To The Bee Dimension</div>
+    
+    <div class="bee-container" id="beeContainer">
+        <a href="https://sgokyo.com/assets/55243466.png">
+            <img src="assets/thisisabee.jpg" alt="A bee image" />
+        </a>
+        <span class="bzzz-text">bzzzzzzzzz</span>
+    </div>
+
+    <span class="button about-button" id="aboutButton">Just Bee Yourself</span>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('beeContainer').style.display = 'block';
+            document.getElementById('aboutButton').style.display = 'block';
+            document.getElementById('escapeButton').style.display = 'block';
+        }, 2000);
+
+        let aboutClicked = false;
+
+        document.getElementById('aboutButton').addEventListener('click', () => {
+            aboutClicked = !aboutClicked;
+            const infoLines = document.querySelectorAll('.info-line');
+            infoLines.forEach(line => {
+                line.style.display = aboutClicked ? 'block' : 'none';
+            });
+            document.getElementById('aboutButton').innerText = aboutClicked ? 'Just Bee Yourself' : 'Just Bee Yourself';
+        });
+    </script>
+</body>
+</html>
